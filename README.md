@@ -15,19 +15,17 @@ No dependencies. No extra tables. Just `curl`.
 
 Copy `.github/workflows/keep-supabase-alive.yml` into your project's repository at the same path.
 
-### 2. Replace the table name
+### 2. Add GitHub Actions variables and secrets
 
-In the workflow file, replace `YOUR_TABLE_NAME` with any table that already exists in your Supabase project:
+In your repository go to **Settings → Secrets and variables → Actions** and add:
 
-```yaml
-curl -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/YOUR_TABLE_NAME?select=id&limit=1" \
-```
+**Variable** (under the *Variables* tab — not sensitive, safe to store in plain text):
 
-It only reads one row: no writes, no side effects.
+| Variable name | Value |
+|---|---|
+| `SUPABASE_TABLE_NAME` | Any table that exists in your project, e.g. `users` |
 
-### 3. Add GitHub Secrets
-
-In your repository go to **Settings → Secrets and variables → Actions** and add two secrets:
+**Secrets** (under the *Secrets* tab):
 
 **`SUPABASE_URL`**
 
@@ -50,7 +48,7 @@ sb_secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
 > Use the secret key (not the publishable key), it bypasses Row Level Security so the ping works regardless of your
 > table policies.
 
-### 4. Push and test
+### 3. Push and test
 
 Push the workflow file to your repository. To verify it works immediately:
 
