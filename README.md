@@ -27,14 +27,25 @@ It only reads one row: no writes, no side effects.
 
 ### 3. Add GitHub Secrets
 
-In your repository go to **Settings → Secrets and variables → Actions** and add:
+In your repository go to **Settings → Secrets and variables → Actions** and add two secrets:
 
-| Secret name | Value |
-|---|---|
-| `SUPABASE_URL` | Your project URL, e.g. `https://xxxxxxxxxxxx.supabase.co` |
-| `SUPABASE_SECRET_KEY` | Your project's secret key from **Settings → API Keys → Secret keys** |
+**`SUPABASE_URL`**
 
-Both values are in your Supabase dashboard under **Project Settings → API**.
+Go to your project overview at `https://supabase.com/dashboard/project/<your-project-id>`. The URL is displayed on that page and can be copied directly. It looks like:
+
+```
+https://xxxxxxxxxxxxxxxxxxxx.supabase.co
+```
+
+**`SUPABASE_SECRET_KEY`**
+
+Go to `https://supabase.com/dashboard/project/<your-project-id>/settings/api-keys` and find the **Secret keys** section. Click the key to reveal it, then copy it. It looks like:
+
+```
+sb_secret_xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx
+```
+
+> Use the secret key (not the publishable key) — it bypasses Row Level Security so the ping works regardless of your table policies.
 
 ### 4. Push and test
 
