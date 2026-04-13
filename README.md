@@ -19,13 +19,15 @@ Copy `.github/workflows/keep-supabase-alive.yml` into your project's repository 
 
 In your repository go to **Settings → Secrets and variables → Actions** and add:
 
-**Variable** (under the *Variables* tab — not sensitive, safe to store in plain text):
+**`SUPABASE_TABLE_NAME`** (under the *Variables* tab — not sensitive, safe to store in plain text)
+
+Go to `https://github.com/<your-username>/<your-repo>/settings/variables/actions` and add a new variable:
 
 | Variable name | Value |
 |---|---|
 | `SUPABASE_TABLE_NAME` | Any table that exists in your project, e.g. `users` |
 
-**Secrets** (under the *Secrets* tab):
+**Secrets** (under the *Secrets* tab — add these as **repository secrets**, not environment secrets):
 
 **`SUPABASE_URL`**
 
