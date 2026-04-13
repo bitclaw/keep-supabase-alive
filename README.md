@@ -32,7 +32,7 @@ In your repository go to **Settings → Secrets and variables → Actions** and 
 | Secret name | Value |
 |---|---|
 | `SUPABASE_URL` | Your project URL, e.g. `https://xxxxxxxxxxxx.supabase.co` |
-| `SUPABASE_KEY` | Your project's `anon` public key |
+| `SUPABASE_SECRET_KEY` | Your project's secret key from **Settings → API Keys → Secret keys** |
 
 Both values are in your Supabase dashboard under **Project Settings → API**.
 

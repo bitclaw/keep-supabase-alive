@@ -19,17 +19,17 @@ jobs:
             echo "ERROR: SUPABASE_URL secret is not set."
             exit 1
           fi
-          if [ -z "$SUPABASE_KEY" ]; then
-            echo "ERROR: SUPABASE_KEY secret is not set."
+          if [ -z "$SUPABASE_SECRET_KEY" ]; then
+            echo "ERROR: SUPABASE_SECRET_KEY secret is not set."
             exit 1
           fi
         env:
           SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
-          SUPABASE_KEY: ${{ secrets.SUPABASE_KEY }}
+          SUPABASE_SECRET_KEY: ${{ secrets.SUPABASE_SECRET_KEY }}
 
       - name: Ping Supabase Database
         run: |
           curl --fail --silent --show-error --max-time 10 --retry 2 --retry-delay 5 \
           -X GET "${{ secrets.SUPABASE_URL }}/rest/v1/YOUR_TABLE_NAME?select=id&limit=1" \
-          -H "apikey: ${{ secrets.SUPABASE_KEY }}" \
-          -H "Authorization: Bearer ${{ secrets.SUPABASE_KEY }}"
+          -H "apikey: ${{ secrets.SUPABASE_SECRET_KEY }}" \
+          -H "Authorization: Bearer ${{ secrets.SUPABASE_SECRET_KEY }}"
