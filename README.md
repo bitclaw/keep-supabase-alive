@@ -44,6 +44,17 @@ Push the workflow file to your repository. To verify it works immediately:
 2. Click **Run workflow**
 3. Confirm the step exits successfully — you should see a JSON response (even an empty `[]` means the ping worked)
 
+## What's built in for safety
+
+| Protection | Detail |
+|---|---|
+| `timeout-minutes: 5` | Kills the entire job if it hangs no runaway GitHub Actions minutes |
+| `curl --max-time 10` | Cuts the HTTP request after 10 seconds before the job timeout kicks in |
+| `curl --fail` | Exits non-zero on 4xx/5xx — a misconfigured key or bad URL fails loudly instead of silently succeeding |
+| `curl --retry 2` | Retries twice on transient network errors so you don't get false failure alerts |
+| `permissions: {}` | Locks the `GITHUB_TOKEN` to zero permissions — this job doesn't touch the repo |
+| Secret presence check | Fails immediately with a clear message if either secret is missing, before curl runs |
+
 ## Schedule
 
 By default the workflow runs at **00:00 UTC every Sunday and Friday** — twice a week, well within the 7-day inactivity
