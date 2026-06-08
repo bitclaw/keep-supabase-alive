@@ -1,6 +1,6 @@
 # keep-supabase-alive
 
-A minimal GitHub Actions workflow that prevents your Supabase free-tier project from being paused due to inactivity — and automatically restores it if it does get paused.
+A minimal GitHub Actions workflow that prevents your Supabase free-tier project from being paused due to inactivity - and automatically restores it if it does get paused.
 
 ## How it works
 
@@ -37,17 +37,17 @@ Go to **Settings → Secrets and variables → Actions** in your repository.
 |---|---|
 | `SUPABASE_TABLE_NAME` | Any table that exists in your project, e.g. `users` |
 
-#### Optional — auto-restore when already paused
+#### Optional - auto-restore when already paused
 
 Without these, the workflow can only *prevent* pausing. With them, it also *recovers* from a paused state automatically.
 
 | Secret | Where to find it |
 |---|---|
-| `SUPABASE_ACCESS_TOKEN` | [supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens) — generate a personal access token |
+| `SUPABASE_ACCESS_TOKEN` | [supabase.com/dashboard/account/tokens](https://supabase.com/dashboard/account/tokens) - generate a personal access token |
 
 | Variable | Value |
 |---|---|
-| `SUPABASE_PROJECT_REF` | Your project reference ID — the subdomain in your project URL, e.g. `ecubogrnsypaipdfsdny` |
+| `SUPABASE_PROJECT_REF` | Your project reference ID - the subdomain in your project URL, e.g. `ecubogrnsypaipdfsdny` |
 
 ### 3. Push and test
 
@@ -55,23 +55,23 @@ Push the workflow file to your repository. To verify it works immediately:
 
 1. Go to **Actions → Keep Supabase Alive**
 2. Click **Run workflow**
-3. Confirm the ping step exits successfully — you should see a JSON response (even an empty `[]` means the ping worked)
+3. Confirm the ping step exits successfully - you should see a JSON response (even an empty `[]` means the ping worked)
 
 ## What's built in for safety
 
 | Protection | Detail |
 |---|---|
-| `timeout-minutes: 10` | Kills the job if it hangs — increased from 5 to account for the 90-second restore wait |
+| `timeout-minutes: 10` | Kills the job if it hangs - increased from 5 to account for the 90-second restore wait |
 | `curl --max-time 10` | Cuts the HTTP request after 10 seconds |
-| `curl --fail` | Exits non-zero on 4xx/5xx — a misconfigured key or bad URL fails loudly instead of silently succeeding |
+| `curl --fail` | Exits non-zero on 4xx/5xx - a misconfigured key or bad URL fails loudly instead of silently succeeding |
 | `curl --retry 2` | Retries twice on transient network errors |
-| `permissions: {}` | Locks the `GITHUB_TOKEN` to zero permissions — this job does not touch the repo |
+| `permissions: {}` | Locks the `GITHUB_TOKEN` to zero permissions - this job does not touch the repo |
 | Secret presence check | Fails immediately with a clear message if required secrets are missing, before any curl runs |
 | Graceful skip | Auto-restore step skips cleanly if the optional credentials are not configured |
 
 ## Schedule
 
-The workflow runs **daily at 00:00 UTC**. This is intentionally more frequent than strictly necessary — GitHub Actions scheduled jobs can be delayed, and running daily ensures a missed or late run never puts the project at risk.
+The workflow runs **daily at 00:00 UTC**. This is intentionally more frequent than strictly necessary - GitHub Actions scheduled jobs can be delayed, and running daily ensures a missed or late run never puts the project at risk.
 
 To change the schedule, edit the cron expression in the workflow file:
 
@@ -85,7 +85,7 @@ A [cron expression editor](https://crontab.guru) can help if you want a differen
 
 That project is great if you need to manage **multiple Supabase projects** from a single workflow. It supports a config file, multiple keys, detailed logging, and write operations (INSERT/DELETE).
 
-This repo is a simpler drop-in for a single project, with the addition of auto-restore via the Management API — which neither approach had before.
+This repo is a simpler drop-in for a single project, with the addition of auto-restore via the Management API - which neither approach had before.
 
 ## License
 

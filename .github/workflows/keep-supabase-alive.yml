@@ -36,7 +36,7 @@ jobs:
           SUPABASE_PROJECT_REF: ${{ vars.SUPABASE_PROJECT_REF }}
         run: |
           if [ -z "$SUPABASE_ACCESS_TOKEN" ] || [ -z "$SUPABASE_PROJECT_REF" ]; then
-            echo "SUPABASE_ACCESS_TOKEN or SUPABASE_PROJECT_REF not configured — skipping auto-restore."
+            echo "SUPABASE_ACCESS_TOKEN or SUPABASE_PROJECT_REF not configured - skipping auto-restore."
             echo "Add these to enable automatic recovery from a paused state."
             exit 0
           fi
